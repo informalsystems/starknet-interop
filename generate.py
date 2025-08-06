@@ -71,10 +71,10 @@ def save_bashrc(dir, rendered_bashrc):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--name", type=str, required=False, help="Name of the network")
+    parser.add_argument("--name", type=str, required=True, help="Name of the network (required)")
 
     parser.add_argument(
-        "--malachite_nodes", type=int, required=True, help="Number of malachite nodes"
+        "--malachite_nodes", type=int, required=True, help="Number of malachite nodes (required)"
     )
     parser.add_argument(
         "--malachite_path",
@@ -97,22 +97,22 @@ def main():
         "--proposal_timeout",
         type=int,
         required=False,
-        default=500,
-        help="Proposal timeout (in ms, default: 500)",
+        default=3000,
+        help="Proposal timeout (in ms, default: 3000)",
     )
     parser.add_argument(
         "--prevote_timeout",
         type=int,
         required=False,
-        default=500,
-        help="Prevote timeout (in ms, default: 500)",
+        default=1000,
+        help="Prevote timeout (in ms, default: 1000)",
     )
     parser.add_argument(
         "--precommit_timeout",
         type=int,
         required=False,
-        default=500,
-        help="Precommit timeout (in ms, default: 500)",
+        default=1000,
+        help="Precommit timeout (in ms, default: 1000)",
     )
     parser.add_argument(
         "--latency",
@@ -122,9 +122,6 @@ def main():
         help="Latency between nodes (in ms, default: 0)",
     )
     args = parser.parse_args()
-
-    if not args.name:
-        args.name = f"m{args.malachite_nodes}-s{args.sequencer_nodes}"
 
     if args.malachite_nodes > 0 and not args.malachite_path:
         print("ERROR: Please provide the path to the malachite repository with --malachite_path.")
