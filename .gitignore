@@ -1,0 +1,5 @@
+shared/*
+!shared/build
+shared/build/*/*
+!shared/build/*/README.md
+!shared/scripts
