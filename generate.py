@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import argparse
 import base64
 import json
@@ -74,21 +75,23 @@ def main():
     parser.add_argument(
         "--malachite_path",
         type=str,
-        required=True,
+        required=False,
         help="Absolute path to malachite repository",
     )
     parser.add_argument(
         "--sequencer_path",
         type=str,
-        required=True,
+        required=False,
         help="Absolute path to sequencer repository",
     )
+
     parser.add_argument(
         "--malachite_nodes", type=int, required=True, help="Number of malachite nodes"
     )
     parser.add_argument(
         "--sequencer_nodes", type=int, required=True, help="Number of sequencer nodes"
     )
+
     parser.add_argument(
         "--proposal_timeout",
         type=int,
@@ -122,9 +125,18 @@ def main():
     if not args.name:
         args.name = f"m{args.malachite_nodes}-s{args.sequencer_nodes}"
 
+    if args.malachite_nodes > 0 and not args.malachite_path:
+        print("ERROR: Please provide the path to the malachite repository with --malachite_path.")
+        sys.exit(1)
+
+    if args.sequencer_nodes > 0 and not args.sequencer_path:
+        print("ERROR: Please provide the path to the sequencer repository with --sequencer_path.")
+
     # Create base directory for the network
     base_dir = f"./shared/networks/{args.name}"
     os.makedirs(base_dir, exist_ok=True)
+
+    print("Generating network configuration in", base_dir)
 
     env = Environment(loader=FileSystemLoader("."))
 
@@ -147,6 +159,8 @@ def main():
     # Generate keys and configs for malachite nodes
     malachite_config_template = env.get_template("templates/malachite-config.j2")
     for i in range(1, args.malachite_nodes + 1):
+        print(f"Generating malachite-node-{i} config...")
+
         peers = []
         for j in range(1, args.malachite_nodes + 1):
             if j != i:
@@ -183,6 +197,8 @@ def main():
     # Generate keys and config for sequencer nodes
     # TODO: for now, there is no config file for sequencer nodes
     for i in range(1, args.sequencer_nodes + 1):
+        print(f"Generating sequencer-node-{i} config...")
+
         key_data, private_key_hex, peer_id = generate_key()
 
         sequencer_data.append(
