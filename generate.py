@@ -72,24 +72,25 @@ def save_bashrc(dir, rendered_bashrc):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--name", type=str, required=False, help="Name of the network")
-    parser.add_argument(
-        "--malachite_path",
-        type=str,
-        required=False,
-        help="Absolute path to malachite repository",
-    )
-    parser.add_argument(
-        "--sequencer_path",
-        type=str,
-        required=False,
-        help="Absolute path to sequencer repository",
-    )
 
     parser.add_argument(
         "--malachite_nodes", type=int, required=True, help="Number of malachite nodes"
     )
     parser.add_argument(
-        "--sequencer_nodes", type=int, required=True, help="Number of sequencer nodes"
+        "--malachite_path",
+        type=str,
+        required=False,
+        help="Absolute path to malachite repository (only required if malachite_nodes > 0)",
+    )
+
+    parser.add_argument(
+        "--sequencer_nodes", type=int, required=False, default=0, help="Number of sequencer nodes (default: 0)"
+    )
+    parser.add_argument(
+        "--sequencer_path",
+        type=str,
+        required=False,
+        help="Absolute path to sequencer repository (only required if sequencer_nodes > 0)",
     )
 
     parser.add_argument(
@@ -97,28 +98,28 @@ def main():
         type=int,
         required=False,
         default=500,
-        help="Proposal timeout (in ms)",
+        help="Proposal timeout (in ms, default: 500)",
     )
     parser.add_argument(
         "--prevote_timeout",
         type=int,
         required=False,
         default=500,
-        help="Prevote timeout (in ms)",
+        help="Prevote timeout (in ms, default: 500)",
     )
     parser.add_argument(
         "--precommit_timeout",
         type=int,
         required=False,
         default=500,
-        help="Precommit timeout (in ms)",
+        help="Precommit timeout (in ms, default: 500)",
     )
     parser.add_argument(
         "--latency",
         type=int,
         required=False,
         default=0,
-        help="Latency (in ms) between nodes",
+        help="Latency between nodes (in ms, default: 0)",
     )
     args = parser.parse_args()
 
