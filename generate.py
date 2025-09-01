@@ -141,6 +141,7 @@ def main():
     compose_template = env.get_template("templates/docker-compose.j2")
     rendered_compose = compose_template.render(
         network_name=args.name,
+        starknet_interop_path=os.path.dirname(os.path.abspath(__file__)),
         malachite_path=args.malachite_path,
         sequencer_path=args.sequencer_path,
         malachite_count=args.malachite_nodes,
@@ -282,7 +283,7 @@ def main():
         rendered_bashrc = bashrc_template.render(
             network_name=args.name,
             node_type="sequencer",
-            node_bin="apollo_node",
+            node_bin="starknet_sequencer_node",
             id=i,
         )
         save_bashrc(f"{base_dir}/sequencer-node-{i}/", rendered_bashrc)

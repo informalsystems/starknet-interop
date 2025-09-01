@@ -2,6 +2,11 @@
 
 This setup generates networks composed of any combination of Malachite and Sequencer nodes. It uses a containerized architecture with configurable latency between nodes.
 
+Compatible repos:
+
+- circlefin/malachite@anca/starknet_interop
+- bastienfaivre/sequencer@shahak/for_informalsystems/mock_batcher_to_return_empty_proposals
+
 ## Usage
 
 1. Install dependencies:
