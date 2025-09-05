@@ -4,8 +4,8 @@ This setup generates networks composed of any combination of Malachite and Seque
 
 Compatible repos:
 
-- circlefin/malachite@anca/starknet_interop
-- bastienfaivre/sequencer@shahak/for_informalsystems/mock_batcher_to_return_empty_proposals
+- circlefin/malachite@anca/starknet_interop ([cc5994d](https://github.com/circlefin/malachite/pull/868))
+- informalsystems/sequencer@rano/malachite/interop.APOLLO-0.14.0-TESTNET-RC-3
 
 ## Usage
 
@@ -18,9 +18,7 @@ Compatible repos:
 
 2. Clone the Starknet sequencer fork:
     ```bash
-    git clone https://github.com/bastienfaivre/sequencer.git
-    cd sequencer
-    git checkout shahak/for_informalsystems/mock_batcher_to_return_empty_proposals
+    git clone https://github.com/informalsystems/sequencer --branch rano/malachite/interop.APOLLO-0.14.0-TESTNET-RC-3
     ```
 
 3. Generate a network:

@@ -245,6 +245,7 @@ def main():
             network_name=args.name,
             node_type="malachite",
             node_bin="informalsystems-malachitebft-starknet-app",
+            cargo_features="",
             id=i,
         )
         save_bashrc(f"{base_dir}/malachite-node-{i}/", rendered_bashrc)
@@ -283,7 +284,8 @@ def main():
         rendered_bashrc = bashrc_template.render(
             network_name=args.name,
             node_type="sequencer",
-            node_bin="starknet_sequencer_node",
+            node_bin="apollo_node",
+            cargo_features="--features cairo_native",
             id=i,
         )
         save_bashrc(f"{base_dir}/sequencer-node-{i}/", rendered_bashrc)
