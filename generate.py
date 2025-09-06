@@ -246,6 +246,7 @@ def main():
             node_type="malachite",
             node_bin="informalsystems-malachitebft-starknet-app",
             cargo_features="",
+            is_release="--release",
             id=i,
         )
         save_bashrc(f"{base_dir}/malachite-node-{i}/", rendered_bashrc)
@@ -286,6 +287,7 @@ def main():
             node_type="sequencer",
             node_bin="apollo_node",
             cargo_features="--features cairo_native",
+            is_release="",
             id=i,
         )
         save_bashrc(f"{base_dir}/sequencer-node-{i}/", rendered_bashrc)

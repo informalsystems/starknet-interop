@@ -2,6 +2,6 @@
 # export CARGO_TARGET_DIR=/shared/build/{{ node_type }}
 export PATH=/usr/local/cargo/bin:$PATH
 
-alias build="cd {{ node_type }} && cargo build --locked --bin {{ node_bin }} {{ cargo_features }}"
+alias build="cd {{ node_type }} && cargo build --locked --bin {{ node_bin }} {{ cargo_features }} {{ is_release }}"
 alias start="/shared/networks/{{ network_name }}/{{ node_type }}-node-{{ id }}/start.sh"
 alias reset="/shared/networks/{{ network_name }}/{{ node_type }}-node-{{ id }}/reset.sh"
