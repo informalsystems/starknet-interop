@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUST_LOG=starknet_consensus=debug,starknet=info,papyrus_network=debug,papyrus=info \
+RUST_LOG=apollo_consensus=debug,apollo=info,papyrus_network=debug,papyrus=info \
     ${CARGO_TARGET_DIR}/debug/apollo_node \
     --chain_id MY_CUSTOM_CHAIN_ID \
     --eth_fee_token_address 0x1001 \
