@@ -18,4 +18,6 @@ RUN apt-get update && apt-get install -y \
     echo 'set editing-mode emacs' >> /etc/inputrc && \
     echo '[[ $PS1 && -f /etc/bash_completion ]] && . /etc/bash_completion' >> /etc/bash.bashrc
 
+RUN rustup toolchain install 1.87
+
 SHELL [ "/bin/bash", "-c" ]
