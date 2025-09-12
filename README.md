@@ -18,22 +18,29 @@ Compatible repos:
 
 2. Clone the Starknet sequencer fork:
     ```bash
-    git clone https://github.com/bastienfaivre/sequencer.git
+    git clone https://github.com/informalsystems/sequencer.git
     cd sequencer
-    git checkout shahak/for_informalsystems/mock_batcher_to_return_empty_proposals
+    git checkout bastien/validators-ids
+    ```
+    
+3. Clone the Malachite fork:
+    ```bash
+    git clone https://github.com/informalsystems/malachite.git
+    cd malachite
+    git checkout tatjana/starknet_interop
     ```
 
-3. Generate a network:
+4. Generate a network:
     ```bash
     python3 generate.py --help
     ```
 
-4. Apply the latency:
+5. Apply the latency:
     ```bash
     ./apply-latency.sh <network name>
     ```
 
-5. Spawn the network:
+6. Spawn the network:
     ```bash
     ./manage.sh <network name> up
     ```
@@ -41,27 +48,27 @@ Compatible repos:
 >[!NOTE]
 > Spawning the network does not mean that the nodes have started yet. It only means that the containers are up and running. The `manage.sh` script outputs the commands to enter the containers if needed.
 
-6. Build the nodes:
+7. Build the nodes:
     
     If it is the first time you are running the nodes, or if you made changes to the code, you need to build the nodes. You can do this by running the following command:
     ```bash
     ./manage.sh <network name> build
     ```
 
-7. Start the nodes:
+8. Start the nodes:
     ```bash
     ./manage.sh <network name> start <duration in seconds>
     ```
     The logs are located in the `shared/networks/<network name>/logs/` folder.
 
-8. Reset the state:
+9. Reset the state:
 
     You might want to reset the state (db, wal, etc.) of the nodes. You can do this by running the following command:
     ```bash
     ./manage.sh <network name> reset
     ```
 
-9. Stop the network:
+10. Stop the network:
     ```bash
     ./manage.sh <network name> down
     ```
