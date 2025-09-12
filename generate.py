@@ -255,9 +255,9 @@ def main():
 
     if args.proposal_timeout <= 1000:
         print(
-            "Warning: Proposal timeout should be > 1s for the sequencer. Setting it to 1001ms."
+            "Warning: Proposal timeout should be > 1s for the sequencer. Setting it to 1500ms."
         )
-        args.proposal_timeout = 1001
+        args.proposal_timeout = 1500
 
     for i in range(1, args.sequencer_nodes + 1):
         rendered_cli = sequencer_cli_start_template.render(
